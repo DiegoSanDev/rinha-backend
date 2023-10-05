@@ -1,5 +1,6 @@
 package br.com.devpraticar.rinhabackend.entity;
 
+import jakarta.persistence.Cacheable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,10 +26,9 @@ import java.util.UUID;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "pessoa", indexes = {
-    @Index(name = "nn_index", columnList = "nome"),
     @Index(name = "ap_index", columnList = "apelido"),
-    @Index(name = "st_index", columnList = "stack")
 })
+@Cacheable
 public class PessoaEntity implements Serializable {
 
     @Id

@@ -12,10 +12,6 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     depends_on:
       - postgres-db
-    ulimits:
-      nofile:
-        soft: 1000000
-        hard: 1000000
     deploy:
       resources:
         limits:
@@ -34,11 +30,6 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     depends_on:
       - postgres-db
-    #      - cache
-    ulimits:
-      nofile:
-        soft: 1000000
-        hard: 1000000
     deploy:
       resources:
         limits:
@@ -66,18 +57,13 @@ services:
 
   postgres-db:
     image: postgres:latest
-    command: 'postgres -c max_connections=600' #      -c shared_buffers=256MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off
+    command: 'postgres -c max_connections=600'
     container_name: rinha-backend-db
     user: postgres
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=rinha_db
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready" ]
-      interval: 3s
-      timeout: 5s
-      retries: 10
     deploy:
       restart_policy:
         condition: on-failure
