@@ -25,6 +25,14 @@ O projeto foi desenvolvido seguindo as regras da [Rinha de Backend](https://gith
 
 ### Em um terminal executar respectivamente os comandos abaixo:
 
-1. **mva clean install** ou **mvn clean package**
+1. **mvn clean install** ou **mvn clean package**
 2. **docker build -t rinha .**
-3. **sudo docker-compose up --build**
+3. **docker-compose up --build**
+
+# Resultado
+
+![img.png](img.png)
+
+![img_1.png](img_1.png)
+
+
