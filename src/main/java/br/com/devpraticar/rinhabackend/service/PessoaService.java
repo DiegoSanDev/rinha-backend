@@ -4,6 +4,7 @@ import br.com.devpraticar.rinhabackend.entity.PessoaEntity;
 import br.com.devpraticar.rinhabackend.repository.PessoaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ public class PessoaService {
 
     private final PessoaRepository repository;
 
+    @Cacheable(value = "pessoasCache", key = "#pessoaEntity.apelido")
     public PessoaEntity salvar(PessoaEntity pessoaEntity) {
         if(!repository.existsByApelido(pessoaEntity.getApelido())) {
             return repository.save(pessoaEntity);
@@ -26,6 +28,7 @@ public class PessoaService {
         return null;
     }
 
+    @Cacheable(value = "pessoaCache", key = "#id")
     public PessoaEntity getById(UUID id) {
         if(nonNull(id)) {
             return repository.findById(id).orElse(null);

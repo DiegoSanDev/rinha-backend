@@ -56,7 +56,6 @@ public class PessoaController {
             return notFound().build();
         }
         return ok(PessoaMapper.toResponse(pessoa));
-
     }
 
     @GetMapping(value = "/pessoas", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -75,7 +74,6 @@ public class PessoaController {
     public ResponseEntity<Long> contagemPessoas() {
         return ok(service.contagemPessoas());
     }
-
 
     @DeleteMapping("/pessoas")
     public ResponseEntity<Void> deleteAll() {

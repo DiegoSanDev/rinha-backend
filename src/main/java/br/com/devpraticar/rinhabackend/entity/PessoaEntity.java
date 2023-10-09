@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -45,7 +46,7 @@ public class PessoaEntity implements Serializable {
     @Column(name = "nascimento", nullable = false, length = 10)
     private String nascimento;
 
-    @Column(name = "stack")
+    @Column(name = "stack", length = 1024)
     private String stack;
 
 }

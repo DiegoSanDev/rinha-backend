@@ -4,7 +4,7 @@ Maiores detalhes na página do [GitHub](https://github.com/zanfranceschi/rinha-d
 
 Não participei do torneio, mas resolvi fazer uma versão em Java porque achei muito interessante e pude aprender melhor o funcionamento do docker, por exemplo.
 
-O projeto foi desenvolvido seguindo as regras da Rinha de Backend: [](https://github.com/zanfranceschi/rinha-de-backend-2023-q3/blob/main/INSTRUCOES.md)
+O projeto foi desenvolvido seguindo as regras da [Rinha de Backend](https://github.com/zanfranceschi/rinha-de-backend-2023-q3/blob/main/INSTRUCOES.md)
 
 ## Tecnologias utilizadas:
 - Maven
