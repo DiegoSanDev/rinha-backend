@@ -12,6 +12,7 @@ O projeto foi desenvolvido seguindo as regras da [Rinha de Backend](https://gith
 - Spring Boot
 - JPA/Hibernate
 - PostgreSQL
+- NGINX
 - Docker
 - Docker Compose
 
@@ -34,5 +35,6 @@ O projeto foi desenvolvido seguindo as regras da [Rinha de Backend](https://gith
 ![img.png](img.png)
 
 ![img_1.png](img_1.png)
+
 
 
