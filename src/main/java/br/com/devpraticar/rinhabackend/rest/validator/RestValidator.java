@@ -58,7 +58,7 @@ public class RestValidator {
     private static void birthValidator(String nascimento) {
         if(!hasText(nascimento)) {
             throw new UnprocessableEntityException();
-        } else if(!isValidNascimento(nascimento)) {
+        } else if(!isFormatValidBirth(nascimento)) {
             throw new BadRequestException();
         }
     }
@@ -69,17 +69,6 @@ public class RestValidator {
 
     private static boolean isStringNumber(String str) {
         return NumberUtils.isCreatable(str);
-    }
-
-    private static boolean isValidNascimento(String nascimento) {
-        var sdf = new SimpleDateFormat("yyyy-MM-dd");
-        sdf.setLenient(false);
-        try {
-            sdf.parse(nascimento);
-        } catch (ParseException e) {
-            return false;
-        }
-        return true;
     }
 
     private static boolean isFormatValidBirth(String nascimento) {

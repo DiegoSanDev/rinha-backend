@@ -38,7 +38,7 @@ services:
           cpus: '0.15'
           memory: '0.4GB'
 
-  db: # Banco de dados
+  db:
     image: postgres:latest
     restart: always
     hostname: db
