@@ -8,12 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.math.NumberUtils;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -40,7 +34,7 @@ public class RestValidator {
             for(String s : stack) {
                 if(isStringNumber(s)) {
                     throw new BadRequestException();
-                } else if (s.length() > TAMANHO_MAXIMO_32_CARACTERES) {
+                } else if (!hasText(s) || s.length() > TAMANHO_MAXIMO_32_CARACTERES) {
                     throw new UnprocessableEntityException();
                 }
             }
@@ -50,7 +44,7 @@ public class RestValidator {
     private static void fieldValidatorWithMaxLength(String valor, int tamanhoMaximo) {
         if(isStringNumber(valor)) {
             throw new BadRequestException();
-        } else if(isFieldNull(valor) || valor.length() > tamanhoMaximo) {
+        } else if(!hasText(valor) || valor.length() > tamanhoMaximo) {
             throw new UnprocessableEntityException();
         }
     }
@@ -62,11 +56,7 @@ public class RestValidator {
             throw new BadRequestException();
         }
     }
-
-    private static boolean isFieldNull(String campo) {
-        return isNull(campo);
-    }
-
+    
     private static boolean isStringNumber(String str) {
         return NumberUtils.isCreatable(str);
     }
