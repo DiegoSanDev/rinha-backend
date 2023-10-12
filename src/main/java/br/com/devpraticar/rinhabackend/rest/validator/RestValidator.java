@@ -11,7 +11,6 @@ import org.apache.commons.lang3.math.NumberUtils;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static org.springframework.util.StringUtils.hasText;
 
@@ -32,31 +31,34 @@ public class RestValidator {
     public static void validateStack(List<String> stack) {
         if(nonNull(stack) && !stack.isEmpty()) {
             for(String s : stack) {
+                if (!hasText(s) || s.length() > TAMANHO_MAXIMO_32_CARACTERES) {
+                    throw new UnprocessableEntityException();
+                }
                 if(isStringNumber(s)) {
                     throw new BadRequestException();
-                } else if (!hasText(s) || s.length() > TAMANHO_MAXIMO_32_CARACTERES) {
-                    throw new UnprocessableEntityException();
                 }
             }
         }
     }
 
     private static void fieldValidatorWithMaxLength(String valor, int tamanhoMaximo) {
+        if(!hasText(valor) || valor.length() > tamanhoMaximo) {
+            throw new UnprocessableEntityException();
+        }
         if(isStringNumber(valor)) {
             throw new BadRequestException();
-        } else if(!hasText(valor) || valor.length() > tamanhoMaximo) {
-            throw new UnprocessableEntityException();
         }
     }
 
     private static void birthValidator(String nascimento) {
         if(!hasText(nascimento)) {
             throw new UnprocessableEntityException();
-        } else if(!isFormatValidBirth(nascimento)) {
+        }
+        if(!isFormatValidBirth(nascimento)) {
             throw new BadRequestException();
         }
     }
-    
+
     private static boolean isStringNumber(String str) {
         return NumberUtils.isCreatable(str);
     }
